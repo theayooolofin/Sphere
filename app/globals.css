@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-sphere-page text-slate-800 antialiased;
+}
+
+.marker {
+  @apply inline rounded-[2px] bg-sphere-blue px-1 text-white;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hero-marker {
+  @apply inline rounded-[2px] bg-white px-1 text-sphere-blue;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(9, 29, 45, 0.44) 0%, rgba(9, 29, 45, 0.2) 44%, rgba(5, 20, 33, 0.63) 100%),
+    linear-gradient(90deg, rgba(7, 26, 40, 0.42) 0%, rgba(7, 26, 40, 0.18) 38%, rgba(7, 26, 40, 0.06) 100%);
+}
+
+.vehicle-doodle {
+  @apply pointer-events-none absolute right-5 top-3 z-20;
+  width: 72px;
+  height: 24px;
+}
+
+.vehicle-doodle::before,
+.vehicle-doodle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-top: 6px solid #1f4da5;
+  border-radius: 999px;
+  transform-origin: center;
+}
+
+.vehicle-doodle::before {
+  top: 2px;
+  width: 58px;
+  transform: rotate(-7deg);
+}
+
+.vehicle-doodle::after {
+  top: 10px;
+  width: 66px;
+  transform: rotate(8deg);
+}
+
+.vehicle-doodle-2 {
+  right: 34%;
+}
+
+.vehicle-doodle-3 {
+  right: 18%;
+}
+
+.cta-layer {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cta-layer-left {
+  left: -90px;
+  top: -120px;
+  width: 420px;
+  height: 420px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
+  transform: rotate(26deg);
+}
+
+.cta-layer-right {
+  right: -240px;
+  top: -10px;
+  width: 640px;
+  height: 360px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+  transform: rotate(-24deg);
+}
+
+.cta-ring {
+  position: absolute;
+  right: -120px;
+  bottom: -240px;
+  width: 520px;
+  height: 520px;
+  border: 90px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .vehicle-doodle-2,
+  .vehicle-doodle-3 {
+    right: 16px;
+  }
+
+  .cta-layer-left {
+    left: -130px;
+    top: -170px;
+  }
+
+  .cta-layer-right {
+    right: -340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-marker {
+    padding-left: 0.16em;
+    padding-right: 0.16em;
+  }
+
+  .vehicle-doodle {
+    width: 62px;
+    height: 20px;
+  }
+
+  .vehicle-doodle::before {
+    width: 50px;
+  }
+
+  .vehicle-doodle::after {
+    width: 56px;
+  }
+
+  .cta-layer-left,
+  .cta-layer-right {
+    opacity: 0.7;
+  }
+
+  .cta-ring {
+    right: -190px;
+    width: 420px;
+    height: 420px;
+    border-width: 74px;
+  }
+}

@@ -29,6 +29,9 @@ next-env.d.ts
 deploy-static-*/
 .deploy-static-*/
 sphere-ng-deploy-*/
+sphere-static-upload-*/
+sphere-static-upload-*.zip
+dist-static/
 unsplash_*.html
 pexels_tmp.html
 Doc Management.svg

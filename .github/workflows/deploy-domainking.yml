@@ -1,0 +1,45 @@
+name: Deploy To DomainKing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-domainking-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build blog and SEO artifacts
+        run: npm run build:blog
+
+      - name: Build deployable static package
+        run: npm run build:static
+
+      - name: Deploy to DomainKing via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.DOMAINKING_FTP_HOST }}
+          username: ${{ secrets.DOMAINKING_FTP_USER }}
+          password: ${{ secrets.DOMAINKING_FTP_PASS }}
+          port: 21
+          protocol: ftp
+          local-dir: ./dist-static/
+          server-dir: /public_html/

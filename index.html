@@ -6,15 +6,16 @@
     <title>Sphere Logistics</title>
     <meta
       name="description"
-      content="Book trusted logistics in minutes. Move with Sphere and earn as a delivery partner."
+      content="Request a nearby truck or van driver in minutes. Move bulk goods and belongings with Sphere."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260214a" />
+    <link rel="stylesheet" href="styles.css?v=20260224l" />
+    <script src="nav.js?v=20260224l" defer></script>
   </head>
   <body>
     <header class="hero" id="top">
@@ -25,14 +26,19 @@
             <img class="logo-img logo-img-hero" src="assets/sphere-blue-logo.png" alt="Sphere" />
           </a>
 
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+
           <ul class="nav-links">
             <li><a class="is-active" href="#top">Home</a></li>
             <li><a href="drive-earn.html">Drive &amp; Earn</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
 
-          <a class="btn btn-light nav-cta" href="#download">Download the app</a>
+          <a class="btn btn-light nav-cta" href="download/">Download the app</a>
         </nav>
 
         <div class="hero-content">
@@ -41,11 +47,11 @@
             <span class="line-break">&ndash; On Your Terms</span>
           </h1>
           <p>
-            Choose the right vehicle for your package, place a request, and receive
+            Choose the right vehicle for your bulk items, place a request, and receive
             competitive bids from trusted drivers. Fast, affordable, and stress-free
             logistics at your fingertips.
           </p>
-          <a class="btn btn-light" href="#download">Download the app</a>
+          <a class="btn btn-light" href="download/">Download the app</a>
         </div>
       </div>
     </header>
@@ -63,19 +69,19 @@
 
           <div class="stats-grid">
             <article>
-              <h3>300+</h3>
+              <h3>75+</h3>
               <p>Happy Customers</p>
             </article>
             <article>
-              <h3>200+</h3>
+              <h3>70+</h3>
               <p>Successful Moves Completed</p>
             </article>
             <article>
-              <h3>40+</h3>
+              <h3>50+</h3>
               <p>Partnered Drivers</p>
             </article>
             <article>
-              <h3>95%</h3>
+              <h3>96%</h3>
               <p>Positive Feedback</p>
             </article>
           </div>
@@ -86,7 +92,7 @@
         <div class="container center">
           <h2>The <span class="marker">perfect Vehicle</span> For You</h2>
           <p class="lead lead-mid">
-            The perfect vehicle for your delivery needs. Each option comes with a carefully
+            The perfect vehicle for your bulk move needs. Each option comes with a carefully
             selected tonnage and use-case all in one place.
           </p>
 
@@ -115,7 +121,7 @@
       <section class="section section-soft">
         <div class="container center">
           <h2><span class="marker">How it works</span></h2>
-          <p class="lead lead-short">Download, book, and connect with drivers in just a few taps.</p>
+          <p class="lead lead-short">Download, request a driver, and connect in just a few taps.</p>
 
           <div class="card how-card">
             <div class="how-image">
@@ -155,7 +161,7 @@
                 </div>
               </article>
 
-              <a class="btn btn-primary" href="#download">Download the app</a>
+              <a class="btn btn-primary" href="download/">Download the app</a>
             </div>
           </div>
         </div>
@@ -179,11 +185,15 @@
                 <li>Flexible hours to suit your lifestyle.</li>
                 <li>Quick approval process&mdash;start earning right away.</li>
               </ul>
-              <a class="btn btn-primary" href="#download">Become a Driver Today</a>
+              <a class="btn btn-primary" href="download-driver/">Become a Driver Today</a>
             </div>
 
             <div class="drive-image">
-              <img src="assets/driver-photo.png" alt="Sphere driver" />
+              <img
+                class="drive-image-art"
+                src="assets/driver-counting-money-nigeria.jpg"
+                alt="Nigerian driver counting money"
+              />
             </div>
           </div>
         </div>
@@ -239,11 +249,11 @@
               Whether it's your home, office, or business, Sphere makes moving your goods
               or belongings simple, reliable, and stress-free.
             </p>
-            <a class="btn btn-light" href="#top">Download the app</a>
+            <a class="btn btn-light" href="download/">Download the app</a>
           </div>
 
           <div class="cta-phone">
-            <img src="assets/cta-full-e.png" alt="Sphere app preview" />
+            <img class="cta-phone-art" src="assets/vehicle-type-1.svg" alt="Sphere vehicle type illustration" />
           </div>
         </div>
       </section>
@@ -263,6 +273,7 @@
           <a href="#top">Home</a>
           <a href="drive-earn.html">Earn &amp; Drive</a>
           <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
           <a href="contact.html">Contact</a>
         </div>
 
@@ -284,3 +295,16 @@
     </footer>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

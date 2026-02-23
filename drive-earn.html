@@ -6,15 +6,16 @@
     <title>Drive & Earn | Sphere Logistics</title>
     <meta
       name="description"
-      content="Join Sphere's trusted driver network, accept delivery requests, and earn on your own schedule."
+      content="Join Sphere's trusted driver network, accept move requests, and earn on your own schedule."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260214a" />
+    <link rel="stylesheet" href="styles.css?v=20260224l" />
+    <script src="nav.js?v=20260224l" defer></script>
   </head>
   <body>
     <header class="page-hero drive-hero">
@@ -24,14 +25,19 @@
             <img class="logo-img logo-img-hero" src="assets/sphere-blue-logo.png" alt="Sphere" />
           </a>
 
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+
           <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a class="is-active" href="drive-earn.html">Drive &amp; Earn</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
 
-          <a class="btn btn-light nav-cta" href="#drive-cta">Get Started Today</a>
+          <a class="btn btn-light nav-cta" href="download-driver/">Get Started Today</a>
         </nav>
 
         <div class="drive-head">
@@ -44,7 +50,7 @@
               you are in the right place. Work on your own schedule while we handle demand.
             </p>
             <div class="drive-head-actions">
-              <a class="btn btn-light" href="#drive-cta">Get Started Today</a>
+              <a class="btn btn-light" href="download-driver/">Get Started Today</a>
               <a class="btn btn-primary" href="speak-with-someone.html">Speak with Someone</a>
             </div>
           </div>
@@ -63,7 +69,7 @@
             <h2>How <span class="marker">It Works</span></h2>
             <p class="lead lead-mid">
               Join the platform in minutes, accept requests, and start earning from active
-              delivery demand in your area.
+              move demand in your area.
             </p>
           </div>
 
@@ -81,7 +87,7 @@
                 </li>
                 <li>
                   <strong>Set Your Availability</strong>
-                  <span>Choose when you want to receive delivery requests.</span>
+                  <span>Choose when you want to receive move requests.</span>
                 </li>
                 <li>
                   <strong>Accept Requests and Start Earning</strong>
@@ -91,7 +97,7 @@
             </article>
 
             <figure class="de-how-media page-visual">
-              <img src="assets/drive-how-works.png" alt="Sphere app workflow" />
+              <img src="assets/doc-management.svg" alt="Sphere driver document management screen" />
             </figure>
           </div>
         </div>
@@ -102,7 +108,7 @@
           <div class="center">
             <h2>What You <span class="marker">Earn</span></h2>
             <p class="lead lead-mid">
-              Keep the majority of every delivery fee while Sphere powers booking, matching,
+              Keep the majority of every move fee while Sphere powers booking, matching,
               and demand flow.
             </p>
           </div>
@@ -159,7 +165,7 @@
             </article>
             <article class="inner-card">
               <h3>Support Every Step</h3>
-              <p>Our team is available to help with issues before, during, and after deliveries.</p>
+              <p>Our team is available to help with issues before, during, and after moves.</p>
             </article>
           </div>
         </div>
@@ -173,7 +179,7 @@
               Getting started with Sphere is simple. Download the app, create your account,
               verify your details, and begin driving in minutes.
             </p>
-            <a class="btn btn-primary" href="#drive-cta">Become a Driver</a>
+            <a class="btn btn-primary" href="download-driver/">Become a Driver</a>
           </article>
 
           <figure class="page-visual de-easy-media">
@@ -224,9 +230,9 @@
         <div class="container de-final-wrap">
           <div class="de-final-copy">
             <h2>Ready to <span class="marker">Drive?</span></h2>
-            <p>Become a trusted delivery partner and start earning today.</p>
+            <p>Become a trusted driver partner and start earning today.</p>
             <div class="drive-head-actions">
-              <a class="btn btn-light" href="contact.html">Sign Up Now</a>
+              <a class="btn btn-light" href="download-driver/">Sign Up Now</a>
               <a class="btn btn-primary" href="speak-with-someone.html">Talk to Support</a>
             </div>
           </div>
@@ -252,6 +258,7 @@
           <a href="index.html">Home</a>
           <a href="drive-earn.html">Earn &amp; Drive</a>
           <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
           <a href="contact.html">Contact</a>
         </div>
 
@@ -273,3 +280,16 @@
     </footer>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

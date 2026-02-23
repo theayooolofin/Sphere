@@ -27,7 +27,7 @@ const vehicles = [
     image: "/assets/car.svg",
     title: "Compact Car",
     capacity: "150kg max",
-    description: "Suitable for items that fit in a car boot like bags, shoes, and small parcels.",
+    description: "Suitable for light items that fit in a car boot, like bags and personal belongings.",
   },
 ];
 
@@ -144,12 +144,12 @@ export default function Home() {
             <h1 className="text-balance text-[clamp(2.2rem,5.35vw,4.25rem)] font-extrabold leading-[1.04] tracking-[-0.03em]">
               Fast, Reliable, and <span className="hero-marker">Affordable</span>
               <br />
-              <span className="hero-marker">Logistics</span> – On Your Terms
+              <span className="hero-marker">Logistics</span> - On Your Terms
             </h1>
             <p className="mt-4 max-w-[530px] text-[0.97rem] leading-[1.6] text-white/92">
-              Choose the right vehicle for your package, place a request, and receive
-              competitive bids from trusted drivers. Fast, affordable, and stress-free
-              logistics at your fingertips.
+              Choose the right vehicle for your bulk items, goods, and belongings. Request
+              a driver and receive competitive bids from trusted truck and van drivers.
+              Fast, affordable, and stress-free moves at your fingertips.
             </p>
             <a
               href="#download"
@@ -189,7 +189,7 @@ export default function Home() {
                 The <span className="marker">perfect Vehicle</span> For You
               </>
             }
-            subtitle="The perfect vehicle for your delivery needs. Each option comes with a carefully selected tonnage and use-case for your intended move."
+            subtitle="The perfect vehicle for your bulk move needs. Each option comes with carefully selected tonnage and use-cases for your intended move."
           />
 
           <div className="mt-8 grid gap-4 text-left md:grid-cols-3">
@@ -224,7 +224,7 @@ export default function Home() {
         <div className="mx-auto w-[min(1120px,92vw)]">
           <SectionTitle
             title={<span className="marker">How it works</span>}
-            subtitle="Download, book, and transport with drivers in just a few taps."
+            subtitle="Download, request a driver, and move your goods in just a few taps."
           />
 
           <div className="mt-8 grid overflow-hidden rounded-2xl border border-slate-200/80 bg-sphere-card shadow-card md:grid-cols-2">

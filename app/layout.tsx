@@ -10,7 +10,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Sphere Logistics",
   description:
-    "Book trusted logistics in minutes. Move with Sphere and earn as a delivery partner.",
+    "Request a driver in minutes for bulk moves. Move with Sphere and earn as a truck or van driver partner.",
 };
 
 export default function RootLayout({

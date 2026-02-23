@@ -11,10 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260214a" />
+    <link rel="stylesheet" href="styles.css?v=20260224l" />
+    <script src="nav.js?v=20260224l" defer></script>
   </head>
   <body>
     <header class="page-hero">
@@ -24,20 +25,25 @@
             <img class="logo-img logo-img-hero" src="assets/sphere-blue-logo.png" alt="Sphere" />
           </a>
 
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+
           <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="drive-earn.html">Drive &amp; Earn</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a class="is-active" href="contact.html">Contact</a></li>
           </ul>
 
-          <a class="btn btn-light nav-cta" href="index.html#download">Download the app</a>
+          <a class="btn btn-light nav-cta" href="download/">Download the app</a>
         </nav>
 
         <div class="page-head">
           <h1>Contact Sphere</h1>
           <p>
-            Reach out for delivery support, onboarding assistance, partnership requests,
+            Reach out for move support, onboarding assistance, partnership requests,
             or any questions about our platform.
           </p>
         </div>
@@ -49,15 +55,34 @@
         <div class="container inner-grid three">
           <article class="inner-card">
             <h3>Email Support</h3>
-            <p>support@sphere.africa</p>
+            <p>support@sphere.ng</p>
+            <div class="contact-quick-actions">
+              <a
+                class="btn btn-primary btn-contact-action"
+                href="mailto:support@sphere.ng?subject=Sphere%20Support%20Request"
+                >Send email</a
+              >
+            </div>
           </article>
           <article class="inner-card">
             <h3>Call Us</h3>
-            <p>+234 800 000 0000</p>
+            <p>+2347078162970</p>
+            <div class="contact-quick-actions">
+              <a class="btn btn-primary btn-contact-action" href="tel:+2347078162970">Call now</a>
+            </div>
           </article>
           <article class="inner-card">
             <h3>Business Hours</h3>
             <p>Monday - Saturday, 8:00 AM - 7:00 PM</p>
+            <div class="contact-quick-actions">
+              <a
+                class="btn btn-primary btn-contact-action"
+                href="https://wa.me/2347078162970?text=Hello%20Sphere%20Support%2C%20I%20need%20help%20with%20my%20move."
+                target="_blank"
+                rel="noopener noreferrer"
+                >Chat on WhatsApp</a
+              >
+            </div>
           </article>
         </div>
       </section>
@@ -78,7 +103,7 @@
               <label>
                 I am contacting about
                 <select name="topic">
-                  <option>Delivery support</option>
+                  <option>Move support</option>
                   <option>Driver onboarding</option>
                   <option>Business partnership</option>
                   <option>Other inquiry</option>
@@ -96,7 +121,7 @@
             <article class="inner-card">
               <h3>Customer Help Desk</h3>
               <p>
-                Need immediate assistance with an active delivery? Include your request ID so
+                Need immediate assistance with an active move? Include your request ID so
                 our support team can resolve faster.
               </p>
               <a class="btn btn-primary" style="margin-top: 14px;" href="speak-with-someone.html">
@@ -109,7 +134,7 @@
               <p>
                 Sphere HQ, Lagos, Nigeria
                 <br />
-                We currently operate across major urban delivery routes.
+                We currently operate across major urban move corridors.
               </p>
             </article>
           </div>
@@ -131,6 +156,7 @@
           <a href="index.html">Home</a>
           <a href="drive-earn.html">Earn &amp; Drive</a>
           <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
           <a href="contact.html">Contact</a>
         </div>
 
@@ -152,3 +178,16 @@
     </footer>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

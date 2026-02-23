@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:blog": "node scripts/build-blog.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.541.0",

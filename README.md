@@ -7,6 +7,35 @@ Static marketing site for Sphere (`sphere.ng`) with generated blog pages.
 - `npm run build:blog`: Regenerates blog index, post pages, topic pages, sitemap, rss, and robots.
 - `npm run build:static`: Builds deploy-ready static output into `dist-static/`.
 
+## Blog admin (server-side auth + publish)
+
+`/blog-admin` now uses PHP API endpoints in `/api/`:
+
+- `api/auth.php` (login/session/logout)
+- `api/blog.php` (recent posts + publish markdown to GitHub)
+
+### Server env required
+
+- `SPHERE_GH_TOKEN` (GitHub token with `repo` write scope)
+
+Optional overrides:
+
+- `SPHERE_GH_OWNER` (default: `theayooolofin`)
+- `SPHERE_GH_REPO` (default: `Sphere`)
+- `SPHERE_GH_BRANCH` (default: `main`)
+- `SPHERE_AUTH_PEPPER` (extra hash hardening)
+
+If your host does not expose env vars, copy `api/config.local.example.php` to
+`api/config.local.php` on the server and set values there.
+
+### Default editor usernames
+
+- `ayo_admin`
+- `mariam_admin`
+- `tola_admin`
+
+User records live in `api/config.php`. Change salts/hashes before production.
+
 ## Auto deploy to DomainKing (GitHub Actions)
 
 This repo now includes `.github/workflows/deploy-domainking.yml`.

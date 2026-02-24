@@ -11,6 +11,8 @@ const REQUIRED_FILES = [
   "drive-earn.html",
   "contact.html",
   "blog.html",
+  "blog-admin.html",
+  "blog-admin.js",
   "speak-with-someone.html",
   "users-privacy-policy.html",
   "drivers-privacy-policy.html",
@@ -21,7 +23,7 @@ const REQUIRED_FILES = [
   "rss.xml"
 ];
 
-const REQUIRED_DIRS = ["assets", "blog", "download", "download-driver"];
+const REQUIRED_DIRS = ["assets", "blog", "download", "download-driver", "api"];
 
 function ensureExists(relativePath) {
   const absolutePath = path.join(ROOT, relativePath);

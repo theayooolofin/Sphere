@@ -1,0 +1,5 @@
+Options -Indexes
+
+# Keep JSON API responses consistent.
+AddDefaultCharset utf-8
+

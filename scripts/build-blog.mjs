@@ -19,6 +19,7 @@ const AUTHOR_ROTATION = [
   { name: "Mariam", role: "Content & Operations" },
   { name: "Tola", role: "Driver Growth & Field Operations" }
 ];
+const AUTHOR_ROLE_MAP = Object.fromEntries(AUTHOR_ROTATION.map((item) => [item.name, item.role]));
 
 const STATIC_ROUTES = [
   { file: "index.html", loc: "/" },
@@ -151,13 +152,36 @@ function parseDateValue(dateValue, endOfDay = false) {
   return new Date(raw);
 }
 
+function hasTimePart(dateValue) {
+  const raw = String(dateValue).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+    return false;
+  }
+  return /T\d{2}:\d{2}/.test(raw) || /\d{1,2}:\d{2}/.test(raw);
+}
+
 function formatDate(dateValue) {
+  const raw = String(dateValue).trim();
   const date = parseDateValue(dateValue);
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  }).format(date);
+  if (Number.isNaN(date.getTime())) {
+    return raw;
+  }
+
+  const options = hasTimePart(raw)
+    ? {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      }
+    : {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
+
+  return new Intl.DateTimeFormat("en-US", options).format(date);
 }
 
 function isoDate(dateValue) {
@@ -273,6 +297,16 @@ function normalizeBrandTextPreserveMarkdownLinks(value) {
       return `${open}${label}${close}`;
     })
     .join("");
+}
+
+function normalizeAuthorValue(value) {
+  const clean = normalizeBrandText(value);
+  if (!clean) return "";
+  const lowered = clean.toLowerCase();
+  if (lowered === "sphere editorial team" || lowered === "editorial team") {
+    return "";
+  }
+  return clean;
 }
 
 function normalizeBodyParagraphs(markdown) {
@@ -741,8 +775,8 @@ function readPosts() {
       slug,
       title: normalizeBrandText(meta.title),
       description: normalizeBrandText(meta.description),
-      author: "Sphere Editorial Team",
-      authorRole: "Editorial Team",
+      author: meta.author ? normalizeAuthorValue(meta.author) : "",
+      authorRole: meta.authorRole ? normalizeBrandText(meta.authorRole) : "",
       category: meta.category,
       tags: (meta.tags || []).map((tag) => normalizeBrandText(tag)),
       topicSlug,
@@ -758,6 +792,13 @@ function readPosts() {
 
   posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
   return posts.map((post, index) => {
+    if (post.author) {
+      return {
+        ...post,
+        authorRole: post.authorRole || AUTHOR_ROLE_MAP[post.author] || "Editorial Team"
+      };
+    }
+
     const author = AUTHOR_ROTATION[index % AUTHOR_ROTATION.length];
     return {
       ...post,

@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sphere Blog Admin</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <style>
+      :root { --bg:#0b1f45; --card:#fff; --line:#d8dfef; --text:#1e2a44; --muted:#5b6784; --brand:#1f4da5; --ok:#0b8f4f; --warn:#c67a17; --bad:#b42929; }
+      *{box-sizing:border-box} body{margin:0;font-family:Manrope,"Segoe UI",Arial,sans-serif;background:linear-gradient(145deg,#0b1f45,#2a62c5);color:var(--text)}
+      .wrap{width:min(1200px,100% - 32px);margin:20px auto;display:grid;gap:14px}
+      .top{display:flex;justify-content:space-between;align-items:center;gap:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:14px 16px;color:#fff}
+      .top h1{margin:0;font-size:1.25rem}.top p{margin:4px 0 0;color:rgba(255,255,255,.9)} .top a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.45);padding:8px 12px;border-radius:9px;font-weight:800}
+      .main{display:grid;grid-template-columns:360px 1fr;gap:14px}
+      .card{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 28px rgba(10,22,47,.14)}
+      .head{padding:14px 16px 10px;border-bottom:1px solid var(--line)} .head h2{margin:0;font-size:1.05rem}.head p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+      .body{padding:12px 16px 16px}.field{margin:0 0 10px}.field label{display:block;margin:0 0 6px;font-size:.8rem;font-weight:800}.field input,.field textarea,.field select{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font:inherit;color:inherit;background:#fff}
+      .field textarea{min-height:120px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btns{display:flex;flex-wrap:wrap;gap:8px}
+      button{font:inherit;font-weight:800;border-radius:9px;padding:10px 12px;cursor:pointer;border:1px solid transparent}
+      .primary{background:var(--brand);color:#fff}.ghost{background:#f2f6ff;border-color:#cad7f5;color:#274c8f}
+      .status{margin-top:10px;padding:9px 10px;border-radius:9px;border:1px solid #d2dcf7;background:#edf3ff;color:#23457f;font-size:.86rem}
+      .status.error{border-color:#f0c4c4;background:#fff1f1;color:#821f1f}
+      .grid{display:grid;grid-template-columns:1fr 360px;gap:12px}.seo{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+      .seo li{border:1px solid #dfe7fb;background:#f6f9ff;padding:8px;border-radius:8px;font-size:.84rem}.seo .ok{border-color:#bbe7ce;background:#eefbf4;color:#0f6238}.seo .warn{border-color:#f0dbbb;background:#fff8ef;color:#8b5209}.seo .bad{border-color:#efc2c2;background:#fff1f1;color:#8b2323}
+      .preview{border:1px dashed #c7d6f5;background:#f8fbff;border-radius:9px;padding:10px;max-height:300px;overflow:auto}
+      table{width:100%;border-collapse:collapse;font-size:.84rem} th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+      @media (max-width:1080px){.main,.grid{grid-template-columns:1fr}}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="top">
+        <div><h1>Sphere Blog Admin</h1><p>Create SEO-ready posts and publish directly to GitHub.</p></div>
+        <a href="/blog" target="_blank" rel="noopener noreferrer">Open Blog</a>
+      </section>
+
+      <section class="main">
+        <aside class="card">
+          <div class="head"><h2>Login</h2><p>Sign in as an editor. Publishing is secured server-side.</p></div>
+          <div class="body">
+            <div class="field"><label for="identityUser">Editor username</label><input id="identityUser" placeholder="ayo_admin" /></div>
+            <div class="field"><label for="identityPass">Editor password</label><input id="identityPass" type="password" placeholder="********" /></div>
+            <div class="btns">
+              <button class="primary" id="identityLogin" type="button">Editor Login</button>
+              <button class="ghost" id="identityLogout" type="button">Editor Logout</button>
+            </div>
+            <div class="status" id="identityStatus">Not signed in as editor.</div>
+            <div style="height: 12px"></div>
+            <div style="font-size: .82rem;color:var(--muted);font-weight:700">Publishing Backend</div>
+            <div class="btns">
+              <button class="primary" id="connect" type="button">Refresh Posts</button>
+              <button class="ghost" id="logout" type="button">Check Session</button>
+            </div>
+            <div class="status" id="authStatus">Not connected.</div>
+            <div style="margin-top:12px;color:var(--muted);font-size:.86rem;line-height:1.55">
+              Publish creates/updates files in <code>content/blog/posts/</code> on GitHub. Your deploy workflow then ships to DomainKing.
+            </div>
+          </div>
+        </aside>
+
+        <section style="display:grid;gap:12px">
+          <div class="grid">
+            <article class="card">
+              <div class="head"><h2>Write Post</h2><p>Markdown + frontmatter generator.</p></div>
+              <div class="body">
+                <div class="field"><label for="title">Title</label><input id="title" placeholder="How to plan a bulk move in Lagos without delays" /></div>
+                <div class="row">
+                  <div class="field"><label for="slug">Slug</label><input id="slug" placeholder="auto-generated" /></div>
+                  <div class="field"><label for="author">Author</label><select id="author"><option>Ayo Olofin</option><option>Mariam</option><option>Tola</option></select></div>
+                </div>
+                <div class="field"><label for="description">Meta description</label><textarea id="description" rows="3" placeholder="140-170 chars"></textarea><small><span id="descLen">0</span> chars</small></div>
+                <div class="row">
+                  <div class="field"><label for="category">Category</label><select id="category"><option>Customer Guides</option><option>Business Logistics</option><option>Operations &amp; Safety</option><option>City Logistics</option><option>Driver Growth</option><option>Intercity Logistics</option></select></div>
+                  <div class="field"><label for="tags">Tags (comma separated)</label><input id="tags" placeholder="lagos logistics, bulk move, truck and van" /></div>
+                </div>
+                <div class="row">
+                  <div class="field"><label for="publishedAt">Published date &amp; time</label><input id="publishedAt" type="datetime-local" /></div>
+                  <div class="field"><label for="heroImage">Hero image path</label><input id="heroImage" value="assets/blog/truck-size-hero-africa.jpg" /></div>
+                </div>
+                <div class="field"><label for="heroAlt">Hero image alt text</label><input id="heroAlt" placeholder="Black logistics team coordinating a move in Lagos" /></div>
+                <div class="field"><label for="bodyText">Body (Markdown)</label><textarea id="bodyText" rows="18" placeholder="Use Markdown with ## headings, internal links, and images..."></textarea></div>
+                <div class="btns">
+                  <button class="ghost" id="template" type="button">Insert SEO template</button>
+                  <button class="ghost" id="saveDraft" type="button">Save draft</button>
+                  <button class="ghost" id="loadDraft" type="button">Load draft</button>
+                  <button class="primary" id="publish" type="button">Publish to GitHub</button>
+                </div>
+                <div class="status" id="publishStatus">Ready.</div>
+              </div>
+            </article>
+
+            <aside class="card">
+              <div class="head"><h2>SEO Check</h2><p>Target readable, structured, rankable posts.</p></div>
+              <div class="body">
+                <ul class="seo" id="seoChecks"></ul>
+                <div style="height:10px"></div>
+                <div class="preview" id="preview"></div>
+              </div>
+            </aside>
+          </div>
+
+          <article class="card">
+            <div class="head"><h2>Recent Post Files</h2><p>Author + publish time from frontmatter.</p></div>
+            <div class="body" style="overflow:auto">
+              <table>
+                <thead><tr><th>Slug</th><th>Title</th><th>Author</th><th>Published</th></tr></thead>
+                <tbody id="recentBody"><tr><td colspan="4" style="color:var(--muted)">Sign in to load posts.</td></tr></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </section>
+    </div>
+
+    <script src="/blog-admin.js?v=20260224m"></script>
+  </body>
+</html>
+

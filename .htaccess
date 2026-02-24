@@ -11,6 +11,10 @@ RewriteRule ^index\.html$ / [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+([^.]+)\.html[\s?] [NC]
 RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
 
+# Explicit clean routes for top-level pages that would otherwise clash
+# with real folders (e.g. /blog directory for post paths).
+RewriteRule ^(about|drive-earn|contact|blog|drivers-privacy-policy|users-privacy-policy|speak-with-someone)/?$ /$1.html [L]
+
 # Serve clean URLs from matching .html files
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

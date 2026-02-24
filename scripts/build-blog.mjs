@@ -24,13 +24,13 @@ const STATIC_ROUTES = [
   { file: "index.html", loc: "/" },
   { file: "download/index.html", loc: "/download/" },
   { file: "download-driver/index.html", loc: "/download-driver/" },
-  { file: "about.html", loc: "/about.html" },
-  { file: "drive-earn.html", loc: "/drive-earn.html" },
-  { file: "contact.html", loc: "/contact.html" },
-  { file: "blog.html", loc: "/blog.html" },
-  { file: "drivers-privacy-policy.html", loc: "/drivers-privacy-policy.html" },
-  { file: "users-privacy-policy.html", loc: "/users-privacy-policy.html" },
-  { file: "speak-with-someone.html", loc: "/speak-with-someone.html" }
+  { file: "about.html", loc: "/about" },
+  { file: "drive-earn.html", loc: "/drive-earn" },
+  { file: "contact.html", loc: "/contact" },
+  { file: "blog.html", loc: "/blog" },
+  { file: "drivers-privacy-policy.html", loc: "/drivers-privacy-policy" },
+  { file: "users-privacy-policy.html", loc: "/users-privacy-policy" },
+  { file: "speak-with-someone.html", loc: "/speak-with-someone" }
 ];
 
 function hashString(input) {
@@ -771,7 +771,7 @@ function navHtml(activePage, prefix = "") {
   const isActive = (id) => (id === activePage ? ' class="is-active"' : "");
   return `
         <nav class="nav" aria-label="Primary">
-          <a href="${prefix}index.html" class="logo" aria-label="Sphere home">
+          <a href="/" class="logo" aria-label="Sphere home">
             <img class="logo-img logo-img-hero" src="${prefix}assets/sphere-blue-logo.png" alt="Sphere" />
           </a>
 
@@ -780,14 +780,14 @@ function navHtml(activePage, prefix = "") {
           </button>
 
           <ul class="nav-links">
-            <li><a${isActive("home")} href="${prefix}index.html">Home</a></li>
-            <li><a${isActive("drive")} href="${prefix}drive-earn.html">Drive &amp; Earn</a></li>
-            <li><a${isActive("about")} href="${prefix}about.html">About</a></li>
-            <li><a${isActive("blog")} href="${prefix}blog.html">Blog</a></li>
-            <li><a${isActive("contact")} href="${prefix}contact.html">Contact</a></li>
+            <li><a${isActive("home")} href="/">Home</a></li>
+            <li><a${isActive("drive")} href="/drive-earn">Drive &amp; Earn</a></li>
+            <li><a${isActive("about")} href="/about">About</a></li>
+            <li><a${isActive("blog")} href="/blog">Blog</a></li>
+            <li><a${isActive("contact")} href="/contact">Contact</a></li>
           </ul>
 
-          <a class="btn btn-light nav-cta" href="${prefix}download/">Download the app</a>
+          <a class="btn btn-light nav-cta" href="/download/">Download the app</a>
         </nav>`;
 }
 
@@ -796,7 +796,7 @@ function footerHtml(prefix = "") {
     <footer class="footer section-soft" id="footer">
       <div class="container footer-grid">
         <div>
-          <a href="${prefix}index.html" class="logo footer-logo" aria-label="Sphere home">
+          <a href="/" class="logo footer-logo" aria-label="Sphere home">
             <img class="logo-img logo-img-footer" src="${prefix}assets/sphere-blue-logo.png" alt="Sphere" />
           </a>
           <p>Making bulk logistics seamless and reliable.</p>
@@ -804,17 +804,17 @@ function footerHtml(prefix = "") {
         </div>
 
         <div class="footer-links">
-          <a href="${prefix}index.html">Home</a>
-          <a href="${prefix}drive-earn.html">Earn &amp; Drive</a>
-          <a href="${prefix}about.html">About</a>
-          <a href="${prefix}blog.html">Blog</a>
-          <a href="${prefix}contact.html">Contact</a>
+          <a href="/">Home</a>
+          <a href="/drive-earn">Earn &amp; Drive</a>
+          <a href="/about">About</a>
+          <a href="/blog">Blog</a>
+          <a href="/contact">Contact</a>
         </div>
 
         <div class="footer-links">
-          <a href="${prefix}drivers-privacy-policy.html">Drivers' Privacy Policy</a>
-          <a href="${prefix}users-privacy-policy.html">Users' Privacy Policy</a>
-          <a href="${prefix}speak-with-someone.html">Speak with Someone</a>
+          <a href="/drivers-privacy-policy">Drivers' Privacy Policy</a>
+          <a href="/users-privacy-policy">Users' Privacy Policy</a>
+          <a href="/speak-with-someone">Speak with Someone</a>
         </div>
       </div>
 
@@ -856,7 +856,7 @@ function pageHead({
     <meta property="og:type" content="${escapeHtml(ogType)}" />
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
-    <meta property="og:url" content="${escapeHtml(canonical || `${SITE_URL}/blog.html`)}" />
+    <meta property="og:url" content="${escapeHtml(canonical || `${SITE_URL}/blog`)}" />
     <meta property="og:image" content="${escapeHtml(image)}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(title)}" />
@@ -943,7 +943,7 @@ function getTopics(posts) {
 function renderBlogIndex(posts) {
   const hasPosts = posts.length > 0;
   const robots = hasPosts ? "index,follow" : "noindex,follow";
-  const canonical = `${SITE_URL}/blog.html`;
+  const canonical = `${SITE_URL}/blog`;
   const featured = posts[0];
   const latest = posts.slice(1);
   const topics = getTopics(posts);
@@ -1026,7 +1026,7 @@ ${navHtml("blog")}
           <p>Clear, practical guides for customers, businesses, and truck or van drivers moving goods and belongings across Nigeria.</p>
           <div class="blogx-chipbar">${topics
             .slice(0, 6)
-            .map((topic) => `<a href="blog/topic/${topic.slug}/">${escapeHtml(topic.name)}</a>`)
+            .map((topic) => `<a href="/blog/topic/${topic.slug}/">${escapeHtml(topic.name)}</a>`)
             .join("")}</div>
         </section>
       </div>
@@ -1043,7 +1043,7 @@ ${navHtml("blog")}
         <div class="container blogx-shell">
           <div class="blogx-section-head">
             <h2>Latest Articles</h2>
-            <a href="contact.html" class="blogx-link">Need a custom logistics answer? Talk to us</a>
+            <a href="/contact" class="blogx-link">Need a custom logistics answer? Talk to us</a>
           </div>
           <div class="blogx-discovery">
             <div class="blogx-searchbox">
@@ -1075,10 +1075,10 @@ ${navHtml("blog")}
               <p>Use our core pages to move from reading to action.</p>
             </div>
             <div class="blogx-cta-links">
-              <a href="index.html">Request a Driver</a>
-              <a href="drive-earn.html">Become a driver</a>
-              <a href="about.html">About Sphere</a>
-              <a href="contact.html">Speak with support</a>
+              <a href="/">Request a Driver</a>
+              <a href="/drive-earn">Become a driver</a>
+              <a href="/about">About Sphere</a>
+              <a href="/contact">Speak with support</a>
             </div>
           </div>
         </div>
@@ -1252,9 +1252,9 @@ ${navHtml("blog", "../../../")}
           <h1>${escapeHtml(topic.name)}</h1>
           <p>${posts.length} article${posts.length === 1 ? "" : "s"} in this topic. Structured for practical outcomes, not filler.</p>
           <div class="blogx-chipbar">
-            <a href="../../../blog.html">All topics</a>
+            <a href="/blog">All topics</a>
             ${moreTopics
-              .map((item) => `<a href="../../../blog/topic/${item.slug}/">${escapeHtml(item.name)}</a>`)
+              .map((item) => `<a href="/blog/topic/${item.slug}/">${escapeHtml(item.name)}</a>`)
               .join("")}
           </div>
         </section>
@@ -1293,7 +1293,7 @@ ${navHtml("blog", "../../../")}
         <div class="container blogx-shell">
           <div class="blogx-section-head">
             <h2>More in ${escapeHtml(topic.name)}</h2>
-            <a href="../../../blog.html" class="blogx-link">Back to blog hub</a>
+            <a href="/blog" class="blogx-link">Back to blog hub</a>
           </div>
           <div class="blogx-grid">
             ${latestHtml}
@@ -1335,10 +1335,10 @@ function renderInternalPathways(prefix = "../../") {
   return `<section class="blogx-module">
     <h3>Explore more from Sphere</h3>
     <ul class="blogx-inline-links">
-      <li><a href="${prefix}index.html">Request a Driver on Sphere</a></li>
-      <li><a href="${prefix}drive-earn.html">Driver earnings and onboarding</a></li>
-      <li><a href="${prefix}about.html">About our logistics model</a></li>
-      <li><a href="${prefix}contact.html">Contact operations support</a></li>
+      <li><a href="/">Request a Driver on Sphere</a></li>
+      <li><a href="/drive-earn">Driver earnings and onboarding</a></li>
+      <li><a href="/about">About our logistics model</a></li>
+      <li><a href="/contact">Contact operations support</a></li>
     </ul>
   </section>`;
 }
@@ -1350,7 +1350,7 @@ function renderLeadCapture(prefix = "../../") {
       <h3>Join Sphere's logistics insights list</h3>
       <p>Receive practical bulk-move and driver-growth playbooks directly in your inbox.</p>
     </div>
-    <form class="blogx-lead-form" action="${prefix}contact.html" method="get">
+    <form class="blogx-lead-form" action="/contact" method="get">
       <label>
         Name
         <input type="text" name="name" placeholder="Your name" />
@@ -1429,8 +1429,8 @@ function renderInlineArticleCta(post, prefix = "../../") {
       coverage
     )} with the right vehicle and route timing.</p>
     <div class="blogx-inline-cta-actions">
-      <a class="blogx-btn" href="${prefix}download/">Request a driver</a>
-      <a class="blogx-link" href="${prefix}contact.html">Talk to operations</a>
+      <a class="blogx-btn" href="/download/">Request a driver</a>
+      <a class="blogx-link" href="/contact">Talk to operations</a>
     </div>
   </section>`;
 }
@@ -1543,7 +1543,7 @@ function renderPostPage(post, allPosts) {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: `${SITE_URL}/blog.html`
+        item: `${SITE_URL}/blog`
       },
       {
         "@type": "ListItem",
@@ -1673,7 +1673,7 @@ ${navHtml("blog", "../../")}
             <section class="blogx-rail-card">
               <h3>Need help now?</h3>
               <p>Speak with the Sphere operations team for route and vehicle support.</p>
-              <a class="blogx-btn" href="../../contact.html">Contact Sphere</a>
+              <a class="blogx-btn" href="/contact">Contact Sphere</a>
             </section>
           </aside>
 
@@ -1711,7 +1711,7 @@ ${htmlBody}
         <div class="container blogx-shell">
           <div class="blogx-section-head">
             <h2>Related reading</h2>
-            <a href="../../blog.html" class="blogx-link">View all posts</a>
+            <a href="/blog" class="blogx-link">View all posts</a>
           </div>
           <div class="blogx-related-grid">${relatedHtml}</div>
         </div>
@@ -1839,7 +1839,7 @@ function buildRss(posts) {
 <rss version="2.0">
 <channel>
   <title>Sphere Blog</title>
-  <link>${SITE_URL}/blog.html</link>
+  <link>${SITE_URL}/blog</link>
   <description>Logistics strategy and bulk move operations insights from Sphere.</description>
   <language>en-us</language>
   <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

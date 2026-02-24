@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "dist-static");
 
 const REQUIRED_FILES = [
+  ".htaccess",
   "index.html",
   "about.html",
   "drive-earn.html",

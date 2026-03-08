@@ -4474,3 +4474,421 @@ h6,
     object-position: center top !important;
   }
 }
+
+/* =====================================================
+   Blog Enhancement Layer v2 – HubSpot-level editorial
+   ===================================================== */
+
+/* Cleaner listing background */
+.blogx-main {
+  background: #f3f8fc;
+}
+
+/* Card hover lift + shadow */
+.blogx-card,
+.blogx-related-card {
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.blogx-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 52px rgba(16, 38, 84, 0.18);
+}
+
+.blogx-related-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(16, 38, 84, 0.16);
+}
+
+/* Image zoom on card hover */
+.blogx-card-media,
+.blogx-related-media {
+  overflow: hidden;
+}
+
+.blogx-card-media img,
+.blogx-related-media img {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.blogx-card:hover .blogx-card-media img,
+.blogx-related-card:hover .blogx-related-media img {
+  transform: scale(1.05);
+}
+
+/* Featured image zoom */
+.blogx-featured-media {
+  overflow: hidden;
+}
+
+.blogx-featured-media img {
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.blogx-featured:hover .blogx-featured-media img {
+  transform: scale(1.03);
+}
+
+/* Card title colour on hover */
+.blogx-card-body h3 a,
+.blogx-featured-body h2 a {
+  transition: color 0.15s ease;
+}
+
+.blogx-card-body h3 a:hover,
+.blogx-featured-body h2 a:hover {
+  color: #1e4eb1;
+}
+
+/* Topic link accent colours by category */
+.blogx-topic-link[href*="customer-guides"]    { color: #0369a1; }
+.blogx-topic-link[href*="business-logistics"] { color: #7c3aed; }
+.blogx-topic-link[href*="operations-safety"]  { color: #b45309; }
+.blogx-topic-link[href*="city-logistics"]     { color: #0f766e; }
+.blogx-topic-link[href*="driver-growth"]      { color: #be185d; }
+.blogx-topic-link[href*="intercity-logistics"]{ color: #1d4ed8; }
+
+/* ── Hero stats bar ────────────────────────────── */
+.blogx-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.blogx-hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+.blogx-hero-stat strong {
+  color: #fff;
+  font-weight: 800;
+}
+
+/* ── Browse by Topic grid ──────────────────────── */
+.blogx-topic-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.blogx-topic-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  border: 1px solid rgba(24, 55, 108, 0.13);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 13px 13px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(18, 42, 86, 0.07);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.blogx-topic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(18, 42, 86, 0.15);
+}
+
+.blogx-topic-card-dot {
+  width: 26px;
+  height: 4px;
+  border-radius: 999px;
+  margin-bottom: 3px;
+  flex-shrink: 0;
+}
+
+.blogx-topic-card-name {
+  font-size: 0.87rem;
+  font-weight: 700;
+  color: #1b2945;
+  line-height: 1.28;
+}
+
+.blogx-topic-card-count {
+  font-size: 0.73rem;
+  color: #7a8ca8;
+  font-weight: 600;
+}
+
+.blogx-topic-card[data-topic="customer-guides"]    .blogx-topic-card-dot { background: #0369a1; }
+.blogx-topic-card[data-topic="business-logistics"] .blogx-topic-card-dot { background: #7c3aed; }
+.blogx-topic-card[data-topic="operations-safety"]  .blogx-topic-card-dot { background: #b45309; }
+.blogx-topic-card[data-topic="city-logistics"]     .blogx-topic-card-dot { background: #0f766e; }
+.blogx-topic-card[data-topic="driver-growth"]      .blogx-topic-card-dot { background: #be185d; }
+.blogx-topic-card[data-topic="intercity-logistics"].blogx-topic-card-dot { background: #1d4ed8; }
+
+/* ── Social share bar ──────────────────────────── */
+.blogx-share-bar {
+  padding: 15px 30px;
+  border-top: 1px solid rgba(24, 55, 108, 0.1);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: rgba(246, 250, 255, 0.7);
+}
+
+.blogx-share-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #62738c;
+  margin-right: 2px;
+}
+
+.blogx-share-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.blogx-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 11px;
+  border-radius: 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  transition: transform 0.17s ease, box-shadow 0.17s ease, filter 0.17s ease;
+}
+
+.blogx-share-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.14);
+  filter: brightness(1.06);
+}
+
+.blogx-share-btn svg { flex-shrink: 0; }
+
+.blogx-share-btn-x         { background: #0f0f0f; color: #fff; border-color: #0f0f0f; }
+.blogx-share-btn-linkedin  { background: #0a66c2; color: #fff; border-color: #085fae; }
+.blogx-share-btn-whatsapp  { background: #22c55e; color: #fff; border-color: #1bad52; }
+.blogx-share-btn-copy      { background: #fff; color: #1e4eb1; border-color: rgba(24,55,108,0.22); }
+
+.blogx-share-btn-copy.is-copied {
+  background: #f0fdf4;
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.24);
+}
+
+/* ── Breadcrumb ────────────────────────────────── */
+.blogx-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 12px;
+}
+
+.blogx-breadcrumb a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.14s ease;
+}
+
+.blogx-breadcrumb a:hover { color: #fff; }
+
+.blogx-breadcrumb-sep     { opacity: 0.38; }
+
+.blogx-breadcrumb-current {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 32ch;
+}
+
+/* ── Author avatar ─────────────────────────────── */
+.blogx-author-inner {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.blogx-author-avatar {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2c5fca 0%, #1e4eaf 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.28rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  box-shadow: 0 6px 14px rgba(21, 52, 109, 0.26);
+}
+
+.blogx-author-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── FAQ expandable ────────────────────────────── */
+.blogx-faq-item { cursor: pointer; }
+
+.blogx-faq-item h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.blogx-faq-toggle {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(30, 78, 177, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e4eb1;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 0.22s ease, background 0.15s ease;
+  margin-top: 1px;
+}
+
+.blogx-faq-item.is-open .blogx-faq-toggle {
+  transform: rotate(45deg);
+  background: rgba(30, 78, 177, 0.17);
+}
+
+.blogx-faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+
+.blogx-faq-item.is-open .blogx-faq-body {
+  grid-template-rows: 1fr;
+}
+
+.blogx-faq-body-inner {
+  overflow: hidden;
+  padding-top: 0;
+  transition: padding-top 0.28s ease;
+}
+
+.blogx-faq-item.is-open .blogx-faq-body-inner {
+  padding-top: 8px;
+}
+
+/* ── Improved blockquote ───────────────────────── */
+.blogx-prose blockquote {
+  border-left: 4px solid #2c5fca;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(135deg, #edf4ff 0%, #f6faff 100%);
+}
+
+.blogx-prose blockquote p {
+  font-style: italic;
+  color: #2d3f62;
+}
+
+/* ── Callout box ───────────────────────────────── */
+.blogx-callout {
+  margin: 16px 0;
+  border-left: 4px solid #2c5fca;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(135deg, #edf4ff 0%, #f6faff 100%);
+  padding: 12px 16px 13px 14px;
+}
+
+.blogx-callout-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #1e4eb1;
+  margin-bottom: 5px;
+}
+
+.blogx-callout p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.62;
+  color: #3b4f72;
+}
+
+/* ── Module section improvements ──────────────── */
+.blogx-module > h3,
+.blogx-author-box > h3 {
+  padding-bottom: 9px;
+  border-bottom: 2px solid rgba(24, 55, 108, 0.1);
+  margin-bottom: 12px !important;
+}
+
+.blogx-module {
+  border-top: 1px solid rgba(24, 55, 108, 0.09);
+  padding-top: 22px;
+}
+
+.blogx-author-box {
+  padding-bottom: 24px;
+}
+
+/* ── Reading progress visibility ──────────────── */
+.blogx-reading-progress {
+  background: rgba(24, 55, 108, 0.06);
+}
+
+/* ── Responsive overrides ──────────────────────── */
+@media (max-width: 1040px) {
+  .blogx-topic-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .blogx-topic-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blogx-share-bar {
+    padding: 13px 16px;
+  }
+
+  .blogx-author-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .blogx-hero-stats {
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+}

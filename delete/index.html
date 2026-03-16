@@ -6,7 +6,7 @@
     <title>Delete My Account | Sphere Logistics</title>
     <meta
       name="description"
-      content="Request deletion of your Sphere account and personal data. Learn what data is removed and how to submit a deletion request."
+      content="Submit a request to permanently delete your Sphere account and personal data."
     />
     <meta name="robots" content="noindex, follow" />
     <link rel="canonical" href="https://sphere.ng/delete" />
@@ -44,105 +44,111 @@
 
         <div class="page-head">
           <h1>Delete My Account</h1>
-          <p>
-            You can request deletion of your Sphere account and all associated personal data at
-            any time.
-          </p>
+          <p>Submit the form below to permanently delete your Sphere account and all associated data.</p>
         </div>
       </div>
     </header>
 
     <main class="inner-main">
       <section class="section section-soft">
-        <div class="container policy inner-card">
-          <p class="policy-meta">Last updated: March 16, 2026</p>
+        <div class="container inner-grid two">
 
-          <section>
-            <h2>How to Delete Your Account</h2>
-            <p>
-              You can request deletion of your Sphere account in one of two ways:
+          <!-- Form -->
+          <article class="inner-card" id="delete-form-wrap">
+            <h2>Deletion Request</h2>
+            <p style="margin-bottom:1.5rem;color:var(--text-muted,#64748b);font-size:.95rem;">
+              Fill in the details below. We will process your request within 30 days and send a
+              confirmation to your email.
             </p>
-            <ol>
-              <li>
-                <strong>In-app:</strong> Open the Sphere app, go to
-                <strong>Profile &rarr; Settings &rarr; Delete Account</strong> and follow the
-                on-screen steps.
-              </li>
-              <li>
-                <strong>By email:</strong> Send a deletion request to
-                <a href="mailto:support@sphere.ng">support@sphere.ng</a> from the email address
-                linked to your account. Include your full name and phone number so we can locate
-                your account.
-              </li>
-            </ol>
-            <p>
-              We will process your request within <strong>30 days</strong> and send a
-              confirmation email once your account and data have been deleted.
-            </p>
-          </section>
 
-          <section>
-            <h2>What Gets Deleted</h2>
-            <p>
-              When your account deletion request is completed, the following data is permanently
-              removed from our systems:
-            </p>
-            <ul>
-              <li>Your profile information (name, email address, phone number)</li>
-              <li>Saved addresses and location history</li>
-              <li>Payment method details</li>
-              <li>In-app messages and support chat history</li>
-              <li>Device tokens and notification preferences</li>
-              <li>Your account credentials and login data</li>
-            </ul>
-          </section>
+            <form class="contact-form" id="delete-form" novalidate>
+              <label>
+                Full Name <span aria-hidden="true" style="color:#e11d48">*</span>
+                <input type="text" name="name" id="del-name" placeholder="Your full name" required autocomplete="name" />
+              </label>
 
-          <section>
-            <h2>What We Retain</h2>
-            <p>
-              Some data may be retained for a limited period after account deletion where we are
-              legally required to do so:
-            </p>
-            <ul>
-              <li>
-                <strong>Transaction records</strong> — booking history and payment receipts are
-                kept for up to <strong>7 years</strong> for tax and financial compliance
-                obligations under Nigerian law.
-              </li>
-              <li>
-                <strong>Fraud and safety records</strong> — if your account was flagged for
-                suspicious activity, relevant records may be retained for up to
-                <strong>2 years</strong> to protect other users.
-              </li>
-            </ul>
-            <p>
-              Retained records are de-identified where possible and are not used for any
-              marketing or product purposes.
-            </p>
-          </section>
+              <label>
+                Email Address
+                <input type="email" name="email" id="del-email" placeholder="you@example.com" autocomplete="email" />
+              </label>
 
-          <section>
-            <h2>Effect of Deletion</h2>
-            <ul>
-              <li>You will be logged out of the Sphere app immediately.</li>
-              <li>All active or pending bookings will be cancelled.</li>
-              <li>Your account cannot be recovered after deletion is confirmed.</li>
-              <li>
-                If you wish to use Sphere again in the future, you will need to create a new
-                account.
-              </li>
-            </ul>
-          </section>
+              <label>
+                Phone Number
+                <input type="tel" name="phone" id="del-phone" placeholder="+234 800 000 0000" autocomplete="tel" />
+              </label>
+              <p style="font-size:.85rem;color:var(--text-muted,#64748b);margin-top:-.75rem;margin-bottom:.25rem;">
+                Provide at least one of email or phone — whichever is linked to your account.
+              </p>
 
-          <section>
-            <h2>Questions?</h2>
-            <p>
-              If you have any questions about this process or your data rights, contact us at
-              <a href="mailto:support@sphere.ng">support@sphere.ng</a>. You can also review our
-              <a href="/users-privacy-policy">Users' Privacy Policy</a> for full details on how
-              we handle your data.
-            </p>
-          </section>
+              <label>
+                Account Type <span aria-hidden="true" style="color:#e11d48">*</span>
+                <select name="accountType" id="del-type" required>
+                  <option value="" disabled selected>Select account type</option>
+                  <option value="customer">Customer (User)</option>
+                  <option value="driver">Driver</option>
+                  <option value="both">Both (Customer &amp; Driver)</option>
+                </select>
+              </label>
+
+              <label>
+                Reason for deletion <span style="color:var(--text-muted,#64748b);font-weight:400;">(optional)</span>
+                <textarea name="reason" id="del-reason" placeholder="Let us know why you're leaving (optional)" rows="3"></textarea>
+              </label>
+
+              <div id="del-error" role="alert" style="display:none;padding:.75rem 1rem;background:#fef2f2;border:1px solid #fecaca;border-radius:.5rem;color:#b91c1c;font-size:.9rem;margin-bottom:.5rem;"></div>
+
+              <button class="btn btn-primary" type="submit" id="del-submit" style="background:#e11d48;border-color:#e11d48;">
+                Submit Deletion Request
+              </button>
+            </form>
+
+            <!-- Success state (hidden until submitted) -->
+            <div id="del-success" style="display:none;text-align:center;padding:2rem 1rem;">
+              <div style="font-size:3rem;margin-bottom:1rem;">&#10003;</div>
+              <h3 style="margin-bottom:.5rem;">Request Received</h3>
+              <p style="color:var(--text-muted,#64748b);">
+                We've received your deletion request and will process it within 30 days.
+                A confirmation will be sent to the contact details you provided.
+              </p>
+            </div>
+          </article>
+
+          <!-- Info panel -->
+          <div>
+            <article class="inner-card" style="margin-bottom:1.5rem;">
+              <h3>What gets deleted</h3>
+              <ul style="color:var(--text-muted,#64748b);font-size:.95rem;line-height:1.8;padding-left:1.25rem;">
+                <li>Profile info (name, email, phone)</li>
+                <li>Saved addresses &amp; location history</li>
+                <li>Payment method details</li>
+                <li>In-app messages &amp; support history</li>
+                <li>Device tokens &amp; notification settings</li>
+              </ul>
+            </article>
+
+            <article class="inner-card" style="margin-bottom:1.5rem;">
+              <h3>What we retain</h3>
+              <p style="color:var(--text-muted,#64748b);font-size:.95rem;line-height:1.7;">
+                Transaction records are kept for up to <strong>7 years</strong> for tax
+                and legal compliance. Fraud-related records may be kept for up to
+                <strong>2 years</strong>. Retained data is de-identified where possible.
+              </p>
+            </article>
+
+            <article class="inner-card">
+              <h3>Need help instead?</h3>
+              <p style="color:var(--text-muted,#64748b);font-size:.95rem;margin-bottom:1rem;">
+                If you're having trouble with the app, our support team can help before you go.
+              </p>
+              <a
+                class="btn btn-primary btn-contact-action"
+                href="https://wa.me/2347078162970?text=Hello%20Sphere%20Support%2C%20I%20need%20help."
+                target="_blank"
+                rel="noopener noreferrer"
+              >Chat on WhatsApp</a>
+            </article>
+          </div>
+
         </div>
       </section>
     </main>
@@ -181,5 +187,57 @@
         <p>&copy; 2024 Sphere. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var form    = document.getElementById('delete-form');
+        var submit  = document.getElementById('del-submit');
+        var errBox  = document.getElementById('del-error');
+        var success = document.getElementById('del-success');
+
+        function showError(msg) {
+          errBox.textContent = msg;
+          errBox.style.display = 'block';
+          submit.disabled = false;
+          submit.textContent = 'Submit Deletion Request';
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          errBox.style.display = 'none';
+
+          var name        = document.getElementById('del-name').value.trim();
+          var email       = document.getElementById('del-email').value.trim();
+          var phone       = document.getElementById('del-phone').value.trim();
+          var accountType = document.getElementById('del-type').value;
+          var reason      = document.getElementById('del-reason').value.trim();
+
+          if (!name) return showError('Please enter your full name.');
+          if (!email && !phone) return showError('Please provide your email address or phone number.');
+          if (!accountType) return showError('Please select your account type.');
+
+          submit.disabled = true;
+          submit.textContent = 'Submitting…';
+
+          fetch('/api/delete.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name, email: email, phone: phone, accountType: accountType, reason: reason })
+          })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.ok) {
+              form.style.display = 'none';
+              success.style.display = 'block';
+            } else {
+              showError(data.error || 'Something went wrong. Please try again.');
+            }
+          })
+          .catch(function () {
+            showError('Network error. Please check your connection and try again.');
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

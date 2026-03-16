@@ -23,7 +23,7 @@ const REQUIRED_FILES = [
   "rss.xml"
 ];
 
-const REQUIRED_DIRS = ["assets", "blog", "download", "download-driver", "api"];
+const REQUIRED_DIRS = ["assets", "blog", "download", "download-driver", "api", "delete"];
 
 function ensureExists(relativePath) {
   const absolutePath = path.join(ROOT, relativePath);

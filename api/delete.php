@@ -18,6 +18,45 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// --- Rate limiting: max 5 submissions per IP per hour, file-based ---
+function checkRateLimit(string $ip): bool {
+    $dir  = sys_get_temp_dir() . '/sphere_del_rl';
+    if (!is_dir($dir)) {
+        mkdir($dir, 0700, true);
+    }
+    $file    = $dir . '/' . md5($ip) . '.json';
+    $window  = 3600; // 1 hour
+    $maxHits = 5;
+    $now     = time();
+    $hits    = [];
+
+    if (is_file($file)) {
+        $raw = file_get_contents($file);
+        if ($raw !== false) {
+            $hits = json_decode($raw, true) ?? [];
+        }
+    }
+
+    // Drop timestamps outside the window
+    $hits = array_values(array_filter($hits, fn($t) => ($now - $t) < $window));
+
+    if (count($hits) >= $maxHits) {
+        return false; // rate limit exceeded
+    }
+
+    $hits[] = $now;
+    file_put_contents($file, json_encode($hits), LOCK_EX);
+    return true;
+}
+
+$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+if (!checkRateLimit($ip)) {
+    http_response_code(429);
+    echo json_encode(['ok' => false, 'error' => 'Too many requests. Please try again later.']);
+    exit;
+}
+
+// --- Parse body ---
 $raw  = file_get_contents('php://input');
 $data = json_decode((string)$raw, true);
 
@@ -27,13 +66,24 @@ if (!is_array($data)) {
     exit;
 }
 
-$name        = trim((string)($data['name']        ?? ''));
-$email       = trim((string)($data['email']       ?? ''));
-$phone       = trim((string)($data['phone']       ?? ''));
-$accountType = trim((string)($data['accountType'] ?? ''));
-$reason      = trim((string)($data['reason']      ?? ''));
+// Strip newlines to prevent header injection, then trim
+function cleanField(mixed $v): string {
+    return trim(str_replace(["\r", "\n"], ' ', (string)$v));
+}
 
-// Basic validation
+$name        = cleanField($data['name']        ?? '');
+$email       = cleanField($data['email']       ?? '');
+$phone       = cleanField($data['phone']       ?? '');
+$accountType = cleanField($data['accountType'] ?? '');
+$reason      = cleanField($data['reason']      ?? '');
+
+// Field length caps
+$name   = mb_substr($name,   0, 120);
+$email  = mb_substr($email,  0, 254);
+$phone  = mb_substr($phone,  0, 30);
+$reason = mb_substr($reason, 0, 1000);
+
+// Validation
 if ($name === '' || ($email === '' && $phone === '') || $accountType === '') {
     http_response_code(422);
     echo json_encode(['ok' => false, 'error' => 'Please fill in all required fields.']);
@@ -46,24 +96,17 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Sanitise for email body
-function esc(string $s): string {
-    return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
 $accountTypeLabel = match($accountType) {
     'customer' => 'Customer (User)',
     'driver'   => 'Driver',
     'both'     => 'Both (Customer & Driver)',
-    default    => esc($accountType),
+    default    => 'Unknown',
 };
 
-$reasonLabel = $reason !== '' ? esc($reason) : 'Not provided';
+$reasonLabel = $reason !== '' ? $reason : 'Not provided';
+$timestamp   = date('Y-m-d H:i:s T');
 
-$timestamp = date('Y-m-d H:i:s T');
-$ip        = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-
-$subject = "Account Deletion Request — {$name}";
+$subject = 'Account Deletion Request — ' . $name;
 
 $body = <<<TEXT
 A new account deletion request was submitted on sphere.ng/delete.
